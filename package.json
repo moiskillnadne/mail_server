@@ -1,0 +1,8 @@
+{
+  "name": "mail_server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:moiskillnadne/mail_server.git",
+  "author": "Viktor Riabkov <victor.ryabkov.business@gmail.com>",
+  "license": "MIT"
+}
