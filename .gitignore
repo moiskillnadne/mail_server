@@ -2,3 +2,6 @@ node_modules
 dist
 .idea
 yarn.lock
+.env
+.env.dev
+.env.production
