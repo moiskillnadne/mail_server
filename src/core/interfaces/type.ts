@@ -1,4 +1,4 @@
-interface SendEmailBody {
+export interface SendEmailBody {
   to: string | string[];
   subject: string | null;
   type: SendEmailType;
@@ -12,15 +12,15 @@ type SendEmailConfig =
   | SendHtmlEmailConfig
   | SendTemplateEmailConfig;
 
-type SendTextEmailConfig = {
+export type SendTextEmailConfig = {
   text: string;
 };
 
-type SendHtmlEmailConfig = {
+export type SendHtmlEmailConfig = {
   html: string;
 };
 
-type SendTemplateEmailConfig = {
+export type SendTemplateEmailConfig = {
   templateId: string;
 };
 
