@@ -9,7 +9,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/healthcheck', (req: Request, res: Response) => {
-  res.status(200).json('OK');
+  res.status(200).json('OK Version: v1.0.2');
 });
 
 app.get('*', function (req, res) {

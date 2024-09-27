@@ -35,3 +35,4 @@ jobs:
             nvm install
             yarn install --frozen-lockfile
             yarn build
+            pm2 restart /root/apps/mailserver/dist/index.js
