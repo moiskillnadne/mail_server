@@ -1,12 +1,16 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
+import { ZodSchema } from 'zod';
+
+import { EmailController } from './api/email/email.controller';
+import { emailSchemas } from './api/schemas/emailSchemas';
+
 import {
+  EmailBody,
   SendEmailBody,
   SendHtmlEmailConfig,
   SendTemplateEmailConfig,
   SendTextEmailConfig,
 } from '~/core/interfaces/type';
-import { emailSchemas } from './api/schemas/emailSchemas';
-import { ZodSchema } from 'zod';
 
 const app: Express = express();
 
@@ -31,6 +35,7 @@ const validate =
         query: req.query,
         params: req.params,
       });
+
       return next();
     } catch (error) {
       return res.status(400).json(error);
@@ -40,27 +45,7 @@ const validate =
 app.post(
   '/send-single-email',
   [validate(emailSchemas)],
-  (req: Request, res: Response) => {
-    const body: SendEmailBody = req.body;
-
-    try {
-      const { to, subject, type, config } = body;
-
-      switch (type) {
-        case 'text':
-          const text = (config as SendTextEmailConfig).text;
-        case 'html':
-          const html = (config as SendHtmlEmailConfig).html;
-        case 'template':
-          const template = (config as SendTemplateEmailConfig).templateId;
-      }
-
-      res.status(200).json('Body received');
-    } catch (e) {
-      console.warn(e);
-      res.status(500).json(e);
-    }
-  },
+  EmailController.sendSingleEmail,
 );
 
 app.get('*', function (req, res) {

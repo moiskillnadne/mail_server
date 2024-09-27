@@ -8,5 +8,5 @@ template_params ? json object
 to string || string[]
 subject string
 
-* Logging
-* Sendgrid
+* AWS Cloudwatch
+* AWS SES
