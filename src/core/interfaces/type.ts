@@ -12,29 +12,29 @@ type SendEmailConfig =
   | SendHtmlEmailConfig
   | SendTemplateEmailConfig;
 
-type SendTextEmailConfig = {
+interface SendTextEmailConfig {
   text: string;
-};
+}
 
-type SendHtmlEmailConfig = {
+interface SendHtmlEmailConfig {
   html: string;
-};
+}
 
-type SendTemplateEmailConfig = {
+interface SendTemplateEmailConfig {
   templateId: string;
-};
+}
 
-interface SendTextEmailBody extends SendEmailBody {
+export interface SendTextEmailBody extends SendEmailBody {
   type: 'text';
   config: SendTextEmailConfig;
 }
 
-interface SendHtmlEmailBody extends SendEmailBody {
+export interface SendHtmlEmailBody extends SendEmailBody {
   type: 'html';
   config: SendHtmlEmailConfig;
 }
 
-interface SendTemplateEmailBody extends SendEmailBody {
+export interface SendTemplateEmailBody extends SendEmailBody {
   type: 'template';
   config: SendTemplateEmailConfig;
 }
