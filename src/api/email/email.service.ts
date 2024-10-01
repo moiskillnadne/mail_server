@@ -1,14 +1,10 @@
-import {
-  EmailBody,
-  SendHtmlEmailConfig,
-  SendTemplateEmailConfig,
-  SendTextEmailBody,
-} from '~/core/interfaces/type';
-import AWS from 'aws-sdk';
+// import AWS from '@aws-sdk/client-s3';
 
-AWS.config.update({ region: 'Europe' });
+import { EmailBody, SendTextEmailBody } from '~/core/interfaces/type';
 
-const SENDER_EMAIL_ADDRESS = process.env.SENDER_EMAIL_ADDRESS;
+// AWS.config.update({ region: 'Europe' });
+
+// const SENDER_EMAIL_ADDRESS = process.env.SENDER_EMAIL_ADDRESS;
 
 export class EmailService {
   constructor() {}
@@ -16,15 +12,16 @@ export class EmailService {
   public sendEmail(body: EmailBody) {
     switch (body.type) {
       case 'text':
-        console.log(body.config.text);
+        this.sendTextEmail(body);
       case 'html':
-        console.log((body.config as SendHtmlEmailConfig).html);
+      // console.log((body.config as SendHtmlEmailConfig).html);
       case 'template':
-        const template = (body.config as SendTemplateEmailConfig).templateId;
+      // const template = (body.config as SendTemplateEmailConfig).templateId;
     }
   }
 
   protected sendTextEmail(body: SendTextEmailBody) {
+    console.log(body);
     // const params = {
     //   Destination: {
     //     ToAddresses: typeof body.to === 'string' ? [body.to] : body.to,

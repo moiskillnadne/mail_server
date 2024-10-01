@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import { EmailService } from './email.service';
+
 import { EmailBody } from '~/core/interfaces/type';
 
 export class EmailController {
@@ -9,7 +10,7 @@ export class EmailController {
 
     try {
       const emailService = new EmailService();
-      emailService.sendEmail(req.body);
+      emailService.sendEmail(body);
 
       res.status(200).json('Body received');
     } catch (e) {
