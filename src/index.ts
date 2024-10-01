@@ -15,7 +15,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/healthcheck', (req: Request, res: Response) => {
-  res.status(200).json('OK');
+  res.status(200).json('OK Version: v1.0.2');
 });
 
 const validate = (schema: ZodSchema) => async (req: Request, res: Response, next: NextFunction) => {
