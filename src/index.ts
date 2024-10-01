@@ -4,14 +4,6 @@ import { ZodSchema } from 'zod';
 import { EmailController } from './api/email/email.controller';
 import { emailSchemas } from './api/schemas/emailSchemas';
 
-import {
-  EmailBody,
-  SendEmailBody,
-  SendHtmlEmailConfig,
-  SendTemplateEmailConfig,
-  SendTextEmailConfig,
-} from '~/core/interfaces/type';
-
 const app: Express = express();
 
 const PORT = process.env.PORT;
@@ -26,27 +18,19 @@ app.get('/healthcheck', (req: Request, res: Response) => {
   res.status(200).json('OK');
 });
 
-const validate =
-  (schema: ZodSchema) =>
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      await schema.parseAsync({
-        body: req.body,
-        query: req.query,
-        params: req.params,
-      });
+const validate = (schema: ZodSchema) => async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await schema.parseAsync({
+      body: req.body,
+    });
 
-      return next();
-    } catch (error) {
-      return res.status(400).json(error);
-    }
-  };
+    return next();
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+};
 
-app.post(
-  '/send-single-email',
-  [validate(emailSchemas)],
-  EmailController.sendSingleEmail,
-);
+app.post('/send-single-email', [validate(emailSchemas)], EmailController.sendSingleEmail);
 
 app.get('*', function (req, res) {
   res.status(404).send('Page not found');

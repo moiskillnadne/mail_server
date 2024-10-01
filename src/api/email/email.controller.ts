@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import { EmailService } from './email.service';
+import { EmailBody } from '~/core/interfaces/type';
 
 export class EmailController {
   static sendSingleEmail(req: Request, res: Response) {
