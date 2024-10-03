@@ -14,7 +14,7 @@ const SendTemplateEmailConfigSchema = z.object({
   templateId: z.string(),
 });
 
-export const emailSchemas = z.object({
+export const emailSchema = z.object({
   body: z
     .object({
       to: z.union([z.string().email(), z.array(z.string().email())]),
