@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 
 import { EmailService } from './email.service';
+import { emailSchema } from './emailSchema';
+import { validateSchema } from '../../shared/utils';
 
 import { EmailBody } from '~/core/interfaces/type';
-import { validateSchema } from '../../shared/utils';
-import { emailSchema } from './emailSchema';
 
 export class EmailController {
   static async sendSingleEmail(req: Request, res: Response) {
